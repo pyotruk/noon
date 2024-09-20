@@ -1,0 +1,40 @@
+<html>
+<head>
+<style>
+    body {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        position: relative;
+        touch-action: none;
+    }
+    main {
+        position: absolute;
+        margin: auto;
+        width: 200px;
+        height: 200px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: cornflowerblue;
+    }
+</style>
+</head>
+<body>
+<main id="main"></main>
+<script>
+    const main = document.getElementById('main');
+    main.addEventListener('touchstart', e => {
+        console.debug('touchstart -> touches.length = ', e.touches.length);//, e.changedTouches.length, e.targetTouches.length);
+    });
+    main.addEventListener('touchmove', e => {
+        console.debug('touchmove -> touches.length = ', e.touches.length);//, e.changedTouches.length, e.targetTouches.length);
+    });
+    main.addEventListener('touchend', e => {
+        console.debug('touchend -> touches.length = ', e.touches.length);//, e.changedTouches.length, e.targetTouches.length);
+    });
+</script>
+</body>
+</html>
