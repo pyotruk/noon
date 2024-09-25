@@ -20,21 +20,56 @@
         left: 0;
         background-color: cornflowerblue;
     }
+    #log {
+        position: absolute;
+        width: 20%;
+        height: 100%;
+        top: 0;
+        bottom: 0;
+        left: 0;
+    }
 </style>
 </head>
 <body>
 <main id="main"></main>
+<div id="log"></div>
 <script>
     const main = document.getElementById('main');
+    function log(msg) {
+        const p = document.createElement('p');
+        p.textContent = msg;
+        document.getElementById('log').append(p);
+    }
     main.addEventListener('touchstart', e => {
-        console.debug('touchstart -> touches.length = ', e.touches.length);//, e.changedTouches.length, e.targetTouches.length);
+        log(`touchstart -> ${e.touches.length}`);
+        console.log('touchstart -> touches.length = ', e.touches.length);//, e.changedTouches.length, e.targetTouches.length);
     });
     main.addEventListener('touchmove', e => {
-        console.debug('touchmove -> touches.length = ', e.touches.length);//, e.changedTouches.length, e.targetTouches.length);
+        log(`touchmove -> ${e.touches.length}`);
+        console.log('touchmove -> touches.length = ', e.touches.length);//, e.changedTouches.length, e.targetTouches.length);
     });
     main.addEventListener('touchend', e => {
-        console.debug('touchend -> touches.length = ', e.touches.length);//, e.changedTouches.length, e.targetTouches.length);
+        log(`touchend -> ${e.touches.length}`);
+        console.log('touchend -> touches.length = ', e.touches.length);//, e.changedTouches.length, e.targetTouches.length);
     });
 </script>
 </body>
 </html>
+
+<!--
+iPadOS 17.3.1
+Safari & Chrome 110
+
+slow (finger far away):
+touchstart -> 1
+touchstart -> 2
+touchmove -> 2
+(touchend -> 1)
+touchend -> 0
+
+fast (fingers close):
+touchstart -> 2
+touchmove -> 2
+touchend -> 0
+
+-->
